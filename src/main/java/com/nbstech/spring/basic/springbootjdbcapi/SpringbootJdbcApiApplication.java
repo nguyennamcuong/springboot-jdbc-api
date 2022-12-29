@@ -42,7 +42,7 @@ public class SpringbootJdbcApiApplication implements CommandLineRunner {
 		logger.info("Player with Id 3: {}", playerDao.getPlayerById(3));
 
 		tournamentDAO.createTournamentTable();
-	}
+		logger.info("French Players: {}", playerDao.getPlayerByNationality("Austria"));	}
 
 
 
