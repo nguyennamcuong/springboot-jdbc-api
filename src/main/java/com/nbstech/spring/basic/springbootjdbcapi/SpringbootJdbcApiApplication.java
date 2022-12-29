@@ -15,9 +15,15 @@ public class SpringbootJdbcApiApplication implements CommandLineRunner {
 
 	@Autowired
 	PlayerDAO playerDao;
+
+	@Autowired
+	TournamentDAO tournamentDAO;
+
+
 	public static void main(String[] args) {
 		SpringApplication.run(SpringbootJdbcApiApplication.class, args);
 	}
+
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -34,7 +40,10 @@ public class SpringbootJdbcApiApplication implements CommandLineRunner {
 		logger.info("All Players Data: {}", playerDao.getAllPlayers());
 
 		logger.info("Player with Id 3: {}", playerDao.getPlayerById(3));
+
+		tournamentDAO.createTournamentTable();
 	}
+
 
 
 }
