@@ -1,4 +1,4 @@
-package com.nbstech.spring.basic.springbootjdbcapi;
+package com.nbstech.spring.basic.dataacccess.SpringJdbcApi;
 
 import java.util.Date;
 
