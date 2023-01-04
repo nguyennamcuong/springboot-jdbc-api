@@ -79,7 +79,7 @@ public class SpringbootDataAccessApplication implements CommandLineRunner {
 
 		logger.info("French Players: {}", playerDao.getPlayerByNationality("France"));
 
-		/*
+
 		logger.info("Inserting Player 4: {}", playerDao.insertPlayer(
 				new Player (4, "Thiem", "Austria", new Date(System.currentTimeMillis()), 17 ))
 		);
@@ -93,7 +93,8 @@ public class SpringbootDataAccessApplication implements CommandLineRunner {
 		logger.info("All Players Data: {}", playerDao.getAllPlayers());
 
 		logger.info("Player with Id 3: {}", playerDao.getPlayerById(3));
-		 */
+
+		logger.info("\n\n>> All Players Data: {}", playerRepository.getAllPlayers());
 	}
 
 }
