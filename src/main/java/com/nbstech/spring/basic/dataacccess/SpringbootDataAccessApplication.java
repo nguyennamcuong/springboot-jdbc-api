@@ -2,6 +2,7 @@ package com.nbstech.spring.basic.dataacccess;
 
 import com.nbstech.spring.basic.dataacccess.SpringDataJpa.PlayerEntity;
 import com.nbstech.spring.basic.dataacccess.SpringDataJpa.PlayerRepository;
+import com.nbstech.spring.basic.dataacccess.SpringDataJpa.SpringDataJPAPlayerRepository;
 import com.nbstech.spring.basic.dataacccess.SpringJdbcApi.Player;
 import com.nbstech.spring.basic.dataacccess.SpringJdbcApi.PlayerDAO;
 import com.nbstech.spring.basic.dataacccess.SpringJdbcApi.TournamentDAO;
@@ -26,6 +27,9 @@ public class SpringbootDataAccessApplication implements CommandLineRunner {
 
 	@Autowired
 	PlayerRepository playerRepository;
+
+	@Autowired
+	SpringDataJPAPlayerRepository springDataPlayerRepository;
 	public static void main(String[] args) {
 		SpringApplication.run(SpringbootDataAccessApplication.class, args);
 	}
@@ -49,7 +53,8 @@ public class SpringbootDataAccessApplication implements CommandLineRunner {
 //
 //		tournamentDAO.createTournamentTable();
 //		logger.info("French Players: {}", playerDao.getPlayerByNationality("Austria"));
-		SpringDataJPA();
+//		SpringDataJPA();
+		SpringDataRepositoryEx();
 	}
 	private void SpringDataJPA() {
 		// ex1
@@ -95,6 +100,26 @@ public class SpringbootDataAccessApplication implements CommandLineRunner {
 		logger.info("Player with Id 3: {}", playerDao.getPlayerById(3));
 
 		logger.info("\n\n>> All Players Data: {}", playerRepository.getAllPlayers());
+	}
+
+	private void SpringDataRepositoryEx() {
+		//Inserting rows
+		logger.info("Inserting Player: {}", springDataPlayerRepository.save(new PlayerEntity("Djokovic", "Serbia",
+				Date.valueOf("1987-05-22"), 81)));
+		logger.info("Inserting Player: {}", springDataPlayerRepository.save(new PlayerEntity("Monfils", "France",
+				Date.valueOf("1986-09-01"), 10)));
+		logger.info("Inserting Player: {}", springDataPlayerRepository.save(new PlayerEntity("Thiem", "Austria",
+				new Date(System.currentTimeMillis()), 17)));
+
+		//Updating row
+		logger.info("Updating Player with Id 3: {}", springDataPlayerRepository.save(new PlayerEntity(3, "Thiem", "Austria",
+				Date.valueOf("1993-09-03"), 17)));
+
+		logger.info("Player with Id 2: {}", springDataPlayerRepository.findById(2));
+
+		logger.info("All Players Data: {}", springDataPlayerRepository.findAll());
+
+		springDataPlayerRepository.deleteById(2);
 	}
 
 }
